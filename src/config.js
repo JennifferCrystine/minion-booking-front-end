@@ -1,4 +1,5 @@
 export default {
+    MAX_ATTACHMENT_SIZE: 5000000,
     s3: {
       REGION: "US East (N. Virginia)",
       BUCKET: "minion-booking-uploads"
