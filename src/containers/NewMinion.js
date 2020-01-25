@@ -1,16 +1,22 @@
 import React, { useRef, useState } from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Form, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
+import NumericInput from 'react-numeric-input';
+import EmailInputField from '@mitchallen/react-email-input-field';
+import { s3Upload } from "../libs/awsLib";
+import { API } from "aws-amplify";
 import "./NewMinion.css";
 
 export default function NewMinion(props) {
   const file = useRef(null);
-  const [content, setContent] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   function validateForm() {
-    return content.length > 0;
+    return name.length > 0;
   }
 
   function handleFileChange(event) {
@@ -27,24 +33,78 @@ export default function NewMinion(props) {
       );
       return;
     }
-
+  
     setIsLoading(true);
+  
+    try {
+      const attachment = file.current
+        ? await s3Upload(file.current)
+        : null;
+  
+      await createMinion({ name, quantity, email });
+      props.history.push("/");
+    } catch (e) {
+      alert(e);
+      setIsLoading(false);
+    }
   }
+  
+  function createMinion(minion) {
+    return API.post("minions", "/minions", {
+      body: minion
+    });
+  }
+
+  function getInputValues (){
+    const getName = this.name;
+    const getEmail = this.email;
+    const getQuantity = this.quantity;
+  }
+
+  function onNameChange (event){
+    return this.setState({name: event.target.value})
+  }
+
+  function onEmailChange (event){
+    return this.setState({email: event.target.value})
+  }
+
+  function onQuantityChange (event){
+    return this.setState({quantity: event.target.value})
+  }
+
 
   return (
     <div className="NewMinion">
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="content">
+  <form onSubmit={handleSubmit}>
+        <FormGroup controlId="name">
+        <ControlLabel>Nome<span> (do minion)</span></ControlLabel>
           <FormControl
-            value={content}
-            componentClass="textarea"
-            onChange={e => setContent(e.target.value)}
+            value={name}
+            type="text"
+            onChange={e => setName(e.target.value)}
+            placeholder="Digite seu nome"
           />
         </FormGroup>
-        <FormGroup controlId="file">
-          <ControlLabel>Attachment</ControlLabel>
-          <FormControl onChange={handleFileChange} type="file" />
+        <FormGroup controlId="e-mail">
+        <ControlLabel>Email<span> (lembre-se de inserir um email válido!)</span></ControlLabel>
+          <FormControl 
+              value={email}
+              type="email" 
+              onChange={e => setEmail(e.target.value)}
+              placeholder="name@example.com"              
+          /> 
         </FormGroup>
+        <FormGroup controlId="quantity">
+        <ControlLabel>Quantidade</ControlLabel>
+        <FormControl 
+              value={quantity}
+              type="number" 
+              onChange={e => setQuantity(e.target.value)}
+              placeholder="Quantos minions você quer?"              
+          /> 
+        </FormGroup>
+      
         <LoaderButton
           block
           type="submit"
@@ -53,7 +113,7 @@ export default function NewMinion(props) {
           isLoading={isLoading}
           disabled={!validateForm()}
         >
-          Create
+          Reservar!
         </LoaderButton>
       </form>
     </div>

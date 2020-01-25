@@ -1,8 +1,8 @@
-NewMinion form {
+.Minions form {
     padding-bottom: 15px;
   }
   
-  NewMinion form textarea {
+.Minions form textarea {
     height: 300px;
     font-size: 24px;
   }
