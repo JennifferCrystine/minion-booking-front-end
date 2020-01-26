@@ -7,6 +7,9 @@ import { s3Upload } from "../libs/awsLib";
 import NumericInput from 'react-numeric-input';
 import "./Minions.css";
 
+
+
+
 export default function Minions(props) {
   const file = useRef(null);
   const [minion, setMinion] = useState(null);

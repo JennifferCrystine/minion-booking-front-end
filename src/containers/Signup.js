@@ -10,6 +10,7 @@ import { useFormFields } from "../libs/hooksLib";
 import { Auth } from "aws-amplify";
 import "./Signup.css";
 
+
 export default function Signup(props) {
   const [fields, handleFieldChange] = useFormFields({
     email: "",

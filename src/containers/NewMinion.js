@@ -8,6 +8,8 @@ import { s3Upload } from "../libs/awsLib";
 import { API } from "aws-amplify";
 import "./NewMinion.css";
 
+
+
 export default function NewMinion(props) {
   const file = useRef(null);
   const [name, setName] = useState("");

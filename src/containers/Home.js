@@ -3,7 +3,7 @@ import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { API } from "aws-amplify";
 import "./Home.css";
-import Container from 'react-bootstrap/Container';
+import { Container } from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import bananinion from '../images/bananinion.jpg';
@@ -78,7 +78,7 @@ function renderMinionsList(minions) {
   function renderMinions() {
     return (
       <div className="minions">
-        <PageHeader>Seus Minions</PageHeader>
+        <h1>Seus Minions</h1>
         <ListGroup>
           {!isLoading && renderMinionsList(minions)}
         </ListGroup>
@@ -89,6 +89,7 @@ function renderMinionsList(minions) {
   return (
     <div className="Home">
       <Container>
+      <PageHeader>Seus Minions</PageHeader>
         <div className="minionList">
             <Row>
               <Col md={ {span: 3, offset: 1} }>
@@ -110,35 +111,41 @@ function renderMinionsList(minions) {
                       <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
                       </p>
                 </div>
-                
               </Col>
-
             </Row>
-            <div className="dupla">
-              <img src={dupla}/>
-                <h3>Duplinion</h3>
-                  <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
-                  </p>
-            </div>
-            <div className="roxinion">
-              <img src={roxinion}/>
-                <h3>Roxinion</h3>
-                  <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
-                  </p>
-            </div>
-            <div className="original">
-              <img src={original}/>
-                <h3>Carminion</h3>
-                  <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
-                  </p>
-            </div>
-            <div className="sozinion">
-              <img src={sozinion}/>
-                <h3>Sozinion</h3>
-                  <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
-                  </p>
-            </div>
-        </div>
+            <Row>
+              <Col md={ {span: 3, offset: 1} }>
+                <div className="dupla">
+                  <img src={dupla}/>
+                    <h3>Duplinion</h3>
+                      <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
+                      </p>
+                </div>
+                <div className="roxinion">
+                  <img src={roxinion}/>
+                    <h3>Roxinion</h3>
+                      <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
+                      </p>
+                </div>
+                <div className="original">
+                  <img src={original}/>
+                    <h3>Carminion</h3>
+                      <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
+                      </p>
+                </div>
+              </Col>  
+            </Row>
+            <Row>  
+              <Col md={ {span: 3, offset: 1} }>
+                <div className="sozinion">
+                  <img src={sozinion}/>
+                    <h3>Sozinion</h3>
+                      <p>Minions ipsum baboiii bananaaaa daa. Hana dul sae para tú bee do bee do bee do ti aamoo! Tulaliloo chasy bee do bee do bee do poulet tikka masala ti aamoo! Gelatooo. Aaaaaah pepete baboiii underweaaar belloo! Poulet tikka masala. Potatoooo ti aamoo! Underweaaar butt ti aamoo! Jeje bananaaaa gelatooo.
+                      </p>
+                </div>
+              </Col> 
+          </Row>
+          </div>
       </Container>
       {props.isAuthenticated ? renderMinions() : renderLander()}
     </div>
